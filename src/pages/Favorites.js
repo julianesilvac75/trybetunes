@@ -6,7 +6,7 @@ class Favorites extends Component {
       <div data-testid="page-favorites">
         <span>Favorites</span>
       </div>
-    )
+    );
   }
 }
 
