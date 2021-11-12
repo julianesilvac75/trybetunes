@@ -5,7 +5,7 @@ class LoadingMessage extends Component {
   componentDidMount() {
     const { onComponentOnmount } = this.props;
 
-    onComponentOnmount();
+    return onComponentOnmount && onComponentOnmount();
   }
 
   render() {
@@ -18,7 +18,11 @@ class LoadingMessage extends Component {
 }
 
 LoadingMessage.propTypes = {
-  onComponentOnmount: PropTypes.func.isRequired,
+  onComponentOnmount: PropTypes.func,
+};
+
+LoadingMessage.defaultProps = {
+  onComponentOnmount: null,
 };
 
 export default LoadingMessage;
