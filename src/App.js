@@ -7,7 +7,6 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
 import NotFound from './pages/NotFound';
-import { createUser } from './services/userAPI';
 import LoadingMessage from './components/LoadingMessage';
 
 class App extends React.Component {
@@ -15,9 +14,7 @@ class App extends React.Component {
     super();
 
     this.onUserNameChange = this.onUserNameChange.bind(this);
-    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.handleLoginRender = this.handleLoginRender.bind(this);
-    this.onComponentOnmount = this.onComponentOnmount.bind(this);
 
     this.state = {
       userName: '',
@@ -35,7 +32,6 @@ class App extends React.Component {
     if (logged) {
       return <Redirect to="/search" />;
     }
-
     return (<Login
       { ...props }
       isLoginButtonDisabled={ isLoginButtonDisabled }
@@ -43,24 +39,6 @@ class App extends React.Component {
       onSaveButtonClick={ this.onSaveButtonClick }
       userName={ userName }
     />);
-  }
-
-  onSaveButtonClick(event) {
-    event.preventDefault();
-
-    this.setState({
-      loading: true,
-    });
-  }
-
-  async onComponentOnmount() {
-    const { userName } = this.state;
-
-    await createUser({ name: userName });
-    this.setState({
-      loading: false,
-      logged: true,
-    });
   }
 
   onUserNameChange({ target }) {
@@ -83,9 +61,7 @@ class App extends React.Component {
             exact
             path="/"
             render={ (props) => (
-              loading ? <LoadingMessage
-                onComponentOnmount={ this.onComponentOnmount }
-              /> : this.handleLoginRender(props)
+              loading ? <LoadingMessage /> : this.handleLoginRender(props)
             ) }
           />
           <Route path="/search" component={ Search } />

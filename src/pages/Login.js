@@ -1,45 +1,86 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
+import LoadingMessage from '../components/LoadingMessage';
+import { createUser } from '../services/userAPI';
 
 class Login extends Component {
+  constructor() {
+    super();
+
+    this.onUserNameChange = this.onUserNameChange.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+
+    this.state = {
+      userName: '',
+      loading: false,
+      logged: false,
+      isLoginButtonDisabled: true,
+    };
+  }
+
+  onUserNameChange({ target }) {
+    const { value } = target;
+    const minNameLength = 3;
+
+    this.setState({
+      userName: value,
+      isLoginButtonDisabled: value.length < minNameLength,
+    });
+  }
+
+  async onSaveButtonClick(event) {
+    event.preventDefault();
+    const { userName } = this.state;
+
+    this.setState({
+      loading: true,
+    });
+    await createUser({ name: userName });
+    this.setState({
+      loading: false,
+      logged: true,
+    });
+  }
+
   render() {
-    const { isLoginButtonDisabled,
-      onUserNameChange,
-      onSaveButtonClick,
-      userName } = this.props;
+    const { userName,
+      logged,
+      loading,
+      isLoginButtonDisabled } = this.state;
+
+    if (logged) {
+      return <Redirect to="/search" />;
+    }
+
+    // Referência: https://github.com/tryber/sd-016-b-project-trybetunes/pull/74
 
     return (
       <div data-testid="page-login">
-        <h1>Login</h1>
-        <form>
-          <input
-            type="text"
-            name="userName"
-            value={ userName }
-            data-testid="login-name-input"
-            placeholder="Insira o seu nome"
-            onChange={ onUserNameChange }
-          />
+        {loading ? <LoadingMessage /> : (
+          <form>
+            <h1>Login</h1>
+            <input
+              type="text"
+              name="userName"
+              value={ userName }
+              data-testid="login-name-input"
+              placeholder="Insira o seu nome"
+              onChange={ this.onUserNameChange }
+            />
 
-          <button
-            type="submit"
-            data-testid="login-submit-button"
-            onClick={ onSaveButtonClick }
-            disabled={ isLoginButtonDisabled }
-          >
-            Entrar
-          </button>
-        </form>
+            <button
+              type="submit"
+              data-testid="login-submit-button"
+              onClick={ this.onSaveButtonClick }
+              disabled={ isLoginButtonDisabled }
+            >
+              Entrar
+            </button>
+          </form>
+        )}
       </div>
     );
   }
 }
-
-Login.propTypes = {
-  userName: PropTypes.string.isRequired,
-  isLoginButtonDisabled: PropTypes.bool.isRequired,
-  onUserNameChange: PropTypes.func.isRequired,
-  onSaveButtonClick: PropTypes.func.isRequired,
-};
 
 export default Login;
