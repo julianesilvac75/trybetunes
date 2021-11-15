@@ -27,8 +27,6 @@ class Album extends Component {
       isResultDone: true,
       musicsResult: result,
     });
-
-    console.log(result);
   }
 
   musicsList(musicsResult) {
@@ -44,6 +42,7 @@ class Album extends Component {
             key={ trackId }
             trackName={ trackName }
             previewUrl={ previewUrl }
+            trackId={ trackId }
           />);
       }
 
