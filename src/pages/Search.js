@@ -39,7 +39,7 @@ class Search extends Component {
       chosenArtist: previousState.searchArtistInput,
       searchArtistInput: '',
       loading: true,
-    }));
+    }), () => this.onComponentOnmount());
   }
 
   async onComponentOnmount() {
@@ -62,9 +62,7 @@ class Search extends Component {
       <div data-testid="page-search">
         <Header />
 
-        {loading ? <LoadingMessage
-          onComponentOnmount={ this.onComponentOnmount }
-        /> : (
+        {loading ? <LoadingMessage /> : (
           <form>
             <input
               type="text"
