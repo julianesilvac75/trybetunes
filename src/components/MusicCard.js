@@ -8,29 +8,52 @@ class MusicCard extends Component {
   constructor() {
     super();
 
-    this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleFavoriteSong = this.handleFavoriteSong.bind(this);
 
     this.state = {
       loading: false,
+      loadingAlbum: false,
       favorited: false,
     };
   }
 
-  async handleFavoriteClick({ target }) {
+  componentDidMount() {
+    this.handleFavoriteSong();
+  }
+
+  handleFavoriteSong() {
+    const { favoriteSongs, trackId } = this.props;
+
+    this.setState({
+      loadingAlbum: true,
+      favorited: favoriteSongs.some((id) => id === trackId.toString()),
+    }, () => this.setState({
+      loadingAlbum: false,
+    }));
+  }
+
+  handleCheckboxChange({ target }) {
     const { checked, value } = target;
 
     if (checked) {
       this.setState({
         loading: true,
-      });
-      await addSong(value);
-      this.setState({
-        loading: false,
-        favorited: true,
+      }, async () => {
+        await addSong(value);
+        this.setState({
+          loading: false,
+          favorited: true,
+        });
       });
     } else {
       this.setState({
+        loading: true,
         favorited: false,
+      }, () => {
+        this.setState({
+          loading: false,
+        });
       });
     }
   }
@@ -39,7 +62,13 @@ class MusicCard extends Component {
     const { trackName,
       previewUrl,
       trackId } = this.props;
-    const { loading, favorited } = this.state;
+    const { loading,
+      favorited,
+      loadingAlbum } = this.state;
+
+    if (loadingAlbum) {
+      return <LoadingMessage />;
+    }
 
     return (
       <div>
@@ -59,10 +88,9 @@ class MusicCard extends Component {
               id={ `checkbox-music-${trackId}` }
               data-testid={ `checkbox-music-${trackId}
             ` }
-              onClick={ this.handleFavoriteClick }
-              checked={ favorited }
               className="checkbox-input"
-              readOnly
+              onChange={ this.handleCheckboxChange }
+              checked={ favorited }
             />
             <i className="favorite-heart empty-heart far fa-heart " />
             <i className="favorite-heart full-heart fas fa-heart" />
@@ -79,6 +107,7 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
+  favoriteSongs: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MusicCard;

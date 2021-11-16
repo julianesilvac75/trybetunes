@@ -3,16 +3,20 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import musicsAPI from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import LoadingMessage from '../components/LoadingMessage';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor() {
     super();
 
     this.getMusics = this.getMusics.bind(this);
+    this.musicsList = this.musicsList.bind(this);
 
     this.state = {
       isResultDone: false,
       musicsResult: '',
+      favoriteSongs: [],
     };
   }
 
@@ -23,13 +27,19 @@ class Album extends Component {
   async getMusics() {
     const { match: { params } } = this.props;
     const result = await musicsAPI(params.id);
+    const favoriteSongs = await getFavoriteSongs();
+
     this.setState({
-      isResultDone: true,
       musicsResult: result,
-    });
+      favoriteSongs,
+    }, () => this.setState({
+      isResultDone: true,
+    }));
   }
 
   musicsList(musicsResult) {
+    const { favoriteSongs } = this.state;
+
     return musicsResult.map((music) => {
       const { kind,
         trackId,
@@ -43,6 +53,7 @@ class Album extends Component {
             trackName={ trackName }
             previewUrl={ previewUrl }
             trackId={ trackId }
+            favoriteSongs={ favoriteSongs }
           />);
       }
 
@@ -57,7 +68,7 @@ class Album extends Component {
     return (
       <div data-testid="page-album">
         <Header />
-        {isResultDone && (
+        {isResultDone ? (
           <div>
             <h2
               data-testid="album-name"
@@ -71,7 +82,7 @@ class Album extends Component {
             </h3>
             {this.musicsList(musicsResult)}
           </div>
-        )}
+        ) : <LoadingMessage />}
       </div>
     );
   }

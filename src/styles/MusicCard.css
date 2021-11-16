@@ -1,6 +1,6 @@
-.checkbox-input {
+/* .checkbox-input {
   display: none;
-}
+} */
 
 .empty-heart {
   font-size: 1.22em;
@@ -21,3 +21,5 @@
 .checkbox-input:checked ~ .full-heart {
   opacity: 0.8;
 }
+
+/* Referência do botão de favorito: https://codepen.io/Guades/pen/bewZgO */
