@@ -61,11 +61,12 @@ class MusicCard extends Component {
             ` }
               onClick={ this.handleFavoriteClick }
               checked={ favorited }
+              className="checkbox-input"
               readOnly
             />
             <i className="favorite-heart empty-heart far fa-heart " />
             <i className="favorite-heart full-heart fas fa-heart" />
-            {/* Referência: https://codepen.io/Guades/pen/bewZgO */}
+            {/* Referência do botão de favorito: https://codepen.io/Guades/pen/bewZgO */}
             Favorita
           </label>
         )}
