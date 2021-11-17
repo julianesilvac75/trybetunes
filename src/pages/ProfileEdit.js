@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import Header from '../components/Header';
 import LoadingMessage from '../components/LoadingMessage';
-import { getUser } from '../services/userAPI';
+import { getUser, updateUser } from '../services/userAPI';
 
 class ProfileEdit extends Component {
   constructor() {
@@ -9,6 +10,8 @@ class ProfileEdit extends Component {
 
     this.handleUser = this.handleUser.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+    this.handleSaveButton = this.handleSaveButton.bind(this);
+    this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
 
     this.state = {
       loading: true,
@@ -16,11 +19,36 @@ class ProfileEdit extends Component {
       email: '',
       image: '',
       description: '',
+      buttonDisabled: false,
+      redirect: false,
     };
   }
 
   componentDidMount() {
     this.handleUser();
+  }
+
+  handleSaveButton() {
+    const { userName,
+      email,
+      image,
+      description } = this.state;
+    const regexp = /^[^\s@]+@[^\s@]+\.com/;
+    // Referência da regexp: https://stackoverflow.com/a/9204568/16902419
+
+    const validation = [
+      (userName.length > 0),
+      (email.length > 0),
+      (regexp.test(email)),
+      (image.length > 0),
+      (description.length > 0),
+    ];
+
+    const buttonDisabled = validation.every((el) => el);
+
+    this.setState({
+      buttonDisabled: !buttonDisabled,
+    });
   }
 
   handleUser() {
@@ -37,12 +65,35 @@ class ProfileEdit extends Component {
       });
   }
 
+  handleSaveButtonClick(event) {
+    event.preventDefault();
+    this.setState({
+      loading: true,
+    });
+
+    const { userName,
+      email,
+      image,
+      description } = this.state;
+    const userInfo = {
+      name: userName,
+      email,
+      image,
+      description,
+    };
+
+    updateUser(userInfo)
+      .then(() => this.setState({
+        redirect: true,
+      }));
+  }
+
   onInputChange({ target }) {
     const { value, name } = target;
 
     this.setState({
       [name]: value,
-    });
+    }, () => { this.handleSaveButton(); });
   }
 
   render() {
@@ -50,7 +101,9 @@ class ProfileEdit extends Component {
       userName,
       email,
       image,
-      description } = this.state;
+      description,
+      buttonDisabled,
+      redirect } = this.state;
 
     return (
       <div data-testid="page-profile-edit">
@@ -64,7 +117,7 @@ class ProfileEdit extends Component {
               alt={ userName }
             />
             <label htmlFor="edit-input-image">
-              URL da imagem
+              Imagem
               <input
                 name="image"
                 type="text"
@@ -72,6 +125,7 @@ class ProfileEdit extends Component {
                 id="edit-input-image"
                 data-testid="edit-input-image"
                 onChange={ this.onInputChange }
+                placeholder="Digite a URL da imagem"
               />
             </label>
 
@@ -84,6 +138,7 @@ class ProfileEdit extends Component {
                 id="edit-input-name"
                 data-testid="edit-input-name"
                 onChange={ this.onInputChange }
+                placeholder="Digite seu nome"
               />
             </label>
 
@@ -97,6 +152,7 @@ class ProfileEdit extends Component {
                 id="edit-input-email"
                 data-testid="edit-input-email"
                 onChange={ this.onInputChange }
+                placeholder="exemplo@exemplo.com"
               />
             </label>
 
@@ -109,17 +165,22 @@ class ProfileEdit extends Component {
                 id="edit-input-description"
                 data-testid="edit-input-description"
                 onChange={ this.onInputChange }
+                placeholder="Digite algo sobre você"
               />
             </label>
 
             <button
               type="submit"
               data-testid="edit-button-save"
+              onClick={ this.handleSaveButtonClick }
+              disabled={ buttonDisabled }
             >
               Salvar
             </button>
           </form>
         ) }
+
+        {redirect && <Redirect to="/profile" />}
       </div>
     );
   }
