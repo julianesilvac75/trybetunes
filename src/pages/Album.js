@@ -1,88 +1,123 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import musicsAPI from '../services/musicsAPI';
+import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import LoadingMessage from '../components/LoadingMessage';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor() {
     super();
 
-    this.getMusics = this.getMusics.bind(this);
+    this.getMusicsList = this.getMusicsList.bind(this);
     this.musicsList = this.musicsList.bind(this);
+    this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
+    this.getFavoriteList = this.getFavoriteList.bind(this);
 
     this.state = {
-      isResultDone: false,
-      musicsResult: '',
-      favoriteSongs: [],
+      musicsResult: [],
+      favoriteSongs: new Set(),
+      loading: false,
+      albumName: '',
+      artistName: '',
     };
   }
 
   componentDidMount() {
-    this.getMusics();
+    this.getMusicsList();
+    this.getFavoriteList();
   }
 
-  async getMusics() {
-    const { match: { params } } = this.props;
-    const result = await musicsAPI(params.id);
-    const favoriteSongs = await getFavoriteSongs();
-
+  async handleFavoriteClick(song) {
     this.setState({
-      musicsResult: result,
-      favoriteSongs,
-    }, () => this.setState({
-      isResultDone: true,
-    }));
-  }
-
-  musicsList(musicsResult) {
+      loading: true,
+    });
     const { favoriteSongs } = this.state;
 
-    return musicsResult.map((music) => {
-      const { kind,
-        trackId,
-        trackName,
-        previewUrl } = music;
+    if (favoriteSongs.has(song.trackId)) {
+      console.log('função que remove');
+    } else {
+      await addSong(song);
+      favoriteSongs.add(song.trackId);
+    }
 
-      if (kind === 'song') {
-        return (
-          <MusicCard
-            key={ trackId }
-            trackName={ trackName }
-            previewUrl={ previewUrl }
-            trackId={ trackId }
-            favoriteSongs={ favoriteSongs }
-          />);
-      }
-
-      return null;
+    this.setState({
+      loading: false,
     });
   }
 
+  getFavoriteList() {
+    getFavoriteSongs()
+      .then((songs) => songs.map(({ trackId }) => trackId))
+      .then((ids) => {
+        const favoriteSongs = new Set(ids);
+        this.setState({ favoriteSongs });
+      });
+  }
+
+  getMusicsList() {
+    const { match: { params } } = this.props;
+    getMusics(params.id)
+      .then((musicsResult) => {
+        const { artistName, collectionName } = musicsResult[0];
+
+        this.setState({
+          musicsResult,
+          artistName,
+          albumName: collectionName,
+        });
+      });
+  }
+
+  musicsList() {
+    const { favoriteSongs, musicsResult } = this.state;
+
+    return (
+      musicsResult.filter(({ kind }) => kind === 'song')
+        .map((song) => {
+          const { trackId, trackName, previewUrl } = song;
+          const isFavorite = favoriteSongs.has(trackId);
+
+          return (
+            <MusicCard
+              key={ trackId }
+              trackName={ trackName }
+              previewUrl={ previewUrl }
+              trackId={ trackId }
+              handleFavoriteClick={ () => this.handleFavoriteClick(song) }
+              isFavorite={ isFavorite }
+            />
+          );
+        })
+    );
+  }
+
+  // Referência: Israel Sant'Anna (https://github.com/tryber/sd-016-b-project-trybetunes/pull/8)
+
   render() {
-    const { musicsResult,
-      isResultDone } = this.state;
+    const { loading,
+      albumName,
+      artistName } = this.state;
 
     return (
       <div data-testid="page-album">
         <Header />
-        {isResultDone ? (
+        {loading ? <LoadingMessage /> : (
           <div>
             <h2
               data-testid="album-name"
             >
-              { musicsResult[0].collectionName}
+              { albumName }
             </h2>
             <h3
               data-testid="artist-name"
             >
-              { musicsResult[0].artistName }
+              { artistName }
             </h3>
-            {this.musicsList(musicsResult)}
+            {this.musicsList()}
           </div>
-        ) : <LoadingMessage />}
+        )}
       </div>
     );
   }
