@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import LoadingMessage from '../components/LoadingMessage';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor() {
@@ -36,7 +36,8 @@ class Album extends Component {
     const { favoriteSongs } = this.state;
 
     if (favoriteSongs.has(song.trackId)) {
-      console.log('função que remove');
+      await removeSong(song);
+      favoriteSongs.delete(song.trackId);
     } else {
       await addSong(song);
       favoriteSongs.add(song.trackId);
