@@ -32,7 +32,7 @@ class Header extends Component {
     return (
       <header data-testid="header-component">
         <div data-testid="header-user-name">
-          {userName ? `Olá, ${userName}!` : <LoadingMessage />}
+          { !userName ? <LoadingMessage /> : <p>{ userName }</p>}
         </div>
         <Link
           to="/search"
