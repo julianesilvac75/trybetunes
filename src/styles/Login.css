@@ -82,6 +82,13 @@
   color: gray;
 }
 
+.login-submit-button:disabled:hover {
+  border: 1px solid gray;
+  background-color: rgba(128, 128, 128, 0.692);
+  color: gray;
+  cursor: auto;
+}
+
 .login-submit-button:hover {
   background-color: rgb(5, 152, 155);
   color: rgb(4, 50, 51);
