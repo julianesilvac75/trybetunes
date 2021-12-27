@@ -47,7 +47,7 @@
 }
 
 .form-container h2 {
-  color: rgb(0, 100, 102);
+  color: rgb(44, 11, 44);
   font-size: 25px;
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -67,8 +67,8 @@
 }
 
 .login-submit-button {
-  background-color: rgb(0, 100, 102);
-  border: 1px solid rgb(4, 50, 51);
+  background-color: rgb(77, 25, 77);
+  border: 2px solid rgb(39, 10, 39);
   border-radius: 5px;
   color: white;
   font-weight: 600;
@@ -77,20 +77,20 @@
 }
 
 .login-submit-button:disabled {
-  border: 1px solid gray;
+  border: 2px solid gray;
   background-color: rgba(128, 128, 128, 0.692);
   color: gray;
 }
 
 .login-submit-button:disabled:hover {
-  border: 1px solid gray;
+  border: 2px solid gray;
   background-color: rgba(128, 128, 128, 0.692);
   color: gray;
   cursor: auto;
 }
 
 .login-submit-button:hover {
-  background-color: rgb(5, 152, 155);
-  color: rgb(4, 50, 51);
+  background-color: rgb(151, 20, 151);
+  color: rgb(44, 11, 44);
   cursor: pointer;
 }
