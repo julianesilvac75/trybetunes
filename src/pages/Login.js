@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import LoadingMessage from '../components/LoadingMessage';
 import { createUser } from '../services/userAPI';
+import '../styles/Login.css';
+import logo from '../images/logo.png';
 
 class Login extends Component {
   constructor() {
@@ -55,30 +57,44 @@ class Login extends Component {
     // Referência: https://github.com/tryber/sd-016-b-project-trybetunes/pull/74
 
     return (
-      <div data-testid="page-login">
-        {loading ? <LoadingMessage /> : (
-          <form>
-            <h1>Login</h1>
-            <input
-              type="text"
-              name="userName"
-              value={ userName }
-              data-testid="login-name-input"
-              placeholder="Insira o seu nome"
-              onChange={ this.onUserNameChange }
-            />
+      <section
+        className="login-section"
+        data-testid="page-login"
+      >
+        <div
+          className="login-container"
+        >
+          <div className="logo">
+            <img src={ logo } alt="Logo" />
+            <h1 className="teste">TrybeTunes</h1>
+            <h2>O seu tocador de músicas favorito</h2>
+          </div>
+          {loading ? <LoadingMessage /> : (
+            <form className="form-container">
+              <h2>Login</h2>
+              <input
+                type="text"
+                name="userName"
+                value={ userName }
+                className="login-name-input"
+                data-testid="login-name-input"
+                placeholder="Insira o seu nome"
+                onChange={ this.onUserNameChange }
+              />
 
-            <button
-              type="submit"
-              data-testid="login-submit-button"
-              onClick={ this.onSaveButtonClick }
-              disabled={ isLoginButtonDisabled }
-            >
-              Entrar
-            </button>
-          </form>
-        )}
-      </div>
+              <button
+                type="submit"
+                className="login-submit-button"
+                data-testid="login-submit-button"
+                onClick={ this.onSaveButtonClick }
+                disabled={ isLoginButtonDisabled }
+              >
+                Entrar
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
     );
   }
 }

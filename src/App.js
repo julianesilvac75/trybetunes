@@ -8,6 +8,8 @@ import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
 import NotFound from './pages/NotFound';
 import LoadingMessage from './components/LoadingMessage';
+import './styles/App.css';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   constructor() {
@@ -71,6 +73,7 @@ class App extends React.Component {
           <Route path="/profile/edit" component={ ProfileEdit } />
           <Route path="*" component={ NotFound } />
         </Switch>
+        <Footer />
       </BrowserRouter>
     );
   }
