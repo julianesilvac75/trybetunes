@@ -2,11 +2,6 @@
 
 body {
     /* border: 1px solid red; */
-  background-color: rgb(0, 0, 0);
-  background-repeat: no-repeat;
-  background-image: url(../images/equalizer-153212.png);
-  background-size: cover;
-  background-position: center;
   display: flex;
   font-family: Titillium Web, sans-serif;
   justify-content: center;

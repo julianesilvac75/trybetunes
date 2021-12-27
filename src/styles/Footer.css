@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Shizuru&family=Titillium+Web:ital,wght@0,400;0,700;1,200&display=swap');
+
 footer {
   background-color: black;
   box-sizing: border-box;
@@ -9,14 +11,26 @@ footer {
 
 .about-section {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.about-section h1 {
+  margin-top: 0;
+}
+
+.about-section span {
+  font-family: Shizuru, cursive;
 }
 
 .about-section h3 {
-  margin-top: 2px;
+  margin-top: 36px;
 }
 
 .links {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
   padding-left: 20px;
 }
 
@@ -28,4 +42,38 @@ footer {
   color: rgb(77, 25, 77);
   cursor: pointer;
   font-weight: 600;
+}
+
+.social-media {
+  margin: 25px 0;
+}
+
+.social-media i {
+  font-size: 20px;
+  margin: 0 10px
+}
+
+.social-media i:hover {
+  color: rgb(77, 25, 77);
+  cursor: pointer;
+}
+
+.info-section {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.info-section p {
+    margin: 0;
+}
+
+.info-section a {
+  color: aliceblue;
+  font-style: italic;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.info-section a:hover {
+  color: rgb(77, 25, 77);
 }

@@ -7,7 +7,10 @@ class Footer extends Component {
       <footer>
         <section className="about-section">
           <div>
-            <h1>TrybeTunes®</h1>
+            <h1>
+              <span>TrybeTunes</span>
+              ®
+            </h1>
             <ul className="links">
               <li>Sobre Nós</li>
               <li>Política de Privacidade</li>
@@ -15,12 +18,36 @@ class Footer extends Component {
               <li>Trabalhe conosco</li>
             </ul>
           </div>
-          <div>
-            <h3>Redes Sociais</h3>
+          <div className="social-media">
+            {/* <h3>Redes Sociais</h3> */}
+            <i className="fab fa-instagram" />
+            <i className="fab fa-facebook-square" />
+            <i className="fab fa-google-play" />
+            <i className="fab fa-app-store-ios" />
           </div>
         </section>
-        <section>
-          Desenvolvido por Juliane Cardoso
+        <section className="info-section">
+          <p>
+            Desenvolvido por
+            {' '}
+            <a href="https://julianesilvac75.github.io/">Juliane Cardoso</a>
+            {' '}
+            💚
+
+          </p>
+          <p>
+            Imagens de
+            {' '}
+            <a href="https://pixabay.com/pt/users/20125977-20125977/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5974829">Achmad fandhy akhbar</a>
+            {' '}
+            e
+            {' '}
+            <a href="https://pixabay.com/pt/users/gdj-1086657/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1781579">Gordon Johnson</a>
+            {' '}
+            por
+            {' '}
+            <a href="https://pixabay.com/pt/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=153212">Pixabay</a>
+          </p>
         </section>
       </footer>
     );
