@@ -8,6 +8,7 @@ class Footer extends Component {
         <section className="about-section">
           <div>
             <h1>
+              <i className="fas fa-guitar" />
               <span>TrybeTunes</span>
               ®
             </h1>
@@ -36,11 +37,7 @@ class Footer extends Component {
 
           </p>
           <p>
-            Imagens de
-            {' '}
-            <a href="https://pixabay.com/pt/users/20125977-20125977/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5974829">Achmad fandhy akhbar</a>
-            {' '}
-            e
+            Imagem de
             {' '}
             <a href="https://pixabay.com/pt/users/gdj-1086657/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1781579">Gordon Johnson</a>
             {' '}

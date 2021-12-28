@@ -28,7 +28,7 @@
 }
 
 .login-container h2 {
-  color: rgb(0, 100, 102);
+  color: aliceblue;
   font-size: 18px;
   text-align: center;
 }
@@ -39,9 +39,10 @@
   flex-direction: column;
 }
 
-.logo img {
+.logo-img {
+  color: rgb(3, 154, 156);
+  font-size: 60px;
   position: relative;
-  width: 200px;
 }
 
 .form-container {
@@ -51,7 +52,7 @@
 }
 
 .form-container h2 {
-  color: rgb(0, 100, 102);
+  color: aliceblue;
   font-size: 25px;
   margin-bottom: 8px;
   text-transform: uppercase;

@@ -65,8 +65,8 @@ class Login extends Component {
           className="login-container"
         >
           <div className="logo">
-            <img src={ logo } alt="Logo" />
-            <h1 className="teste">TrybeTunes</h1>
+            <i className="fas fa-guitar logo-img" />
+            <h1>TrybeTunes</h1>
             <h2>O seu tocador de músicas favorito</h2>
           </div>
           {loading ? <LoadingMessage /> : (
