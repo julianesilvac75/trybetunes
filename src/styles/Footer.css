@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Shizuru&family=Titillium+Web:ital,wght@0,400;0,700;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Shizuru&family=Titillium+Web:ital,wght@0,400;0,700;1,200&display=swap') ;
 
 footer {
   background-color: black;
   box-sizing: border-box;
   color: aliceblue;
-  /* margin-top: auto; */
   padding: 20px;
   width: 100%;
 }
@@ -12,7 +11,6 @@ footer {
 .about-section {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
 }
 
 .about-section h1 {
@@ -20,7 +18,7 @@ footer {
 }
 
 .about-section span {
-  font-family: Shizuru, cursive;
+  font-family: Shizuru , cursive;
 }
 
 .about-section h3 {
@@ -50,7 +48,7 @@ footer {
 
 .social-media i {
   font-size: 20px;
-  margin: 0 10px
+  margin: 0 10px;
 }
 
 .social-media i:hover {
@@ -64,7 +62,7 @@ footer {
 }
 
 .info-section p {
-    margin: 0;
+  margin: 0;
 }
 
 .info-section a {
