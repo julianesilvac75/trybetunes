@@ -40,7 +40,6 @@
 .album-container {
   align-items: center;
   display: flex;
-  /* flex-direction: column; */
 }
 
 .album-container img {
@@ -53,6 +52,6 @@
   margin-left: 20px;
 }
 
-.album-container div span:nth-child(1) {
+.album-container div span:nth-child( 1 ) {
   font-size: 20px;
 }
