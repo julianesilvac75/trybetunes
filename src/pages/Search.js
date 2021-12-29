@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import LoadingMessage from '../components/LoadingMessage';
 import Results from '../components/Results';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import '../styles/Search.css';
 
 class Search extends Component {
   constructor() {
@@ -59,7 +60,10 @@ class Search extends Component {
       resultAPI } = this.state;
 
     return (
-      <div data-testid="page-search">
+      <div
+        className="page-search"
+        data-testid="page-search"
+      >
         <Header />
 
         {loading ? <LoadingMessage /> : (

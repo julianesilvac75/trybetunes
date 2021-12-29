@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Shizuru&family=Titillium+Web:ital,wght@0,400;0,700;1,200&display=swap') ;
+
+.header-component {
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header-user-name {
+  display: flex;
+  height: 130px;
+  justify-content: space-between;
+}
+
+.logo {
+  color: rgb(3, 154, 156);
+  margin: 15px;
+}
+
+.logo i {
+  /* color: rgb(3, 154, 156); */
+  font-size: 50px;
+}
+
+.logo h1 {
+  /* color: aliceblue; */
+  font-family: Shizuru , cursive;
+  margin: 0;
+}
+
+.user-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 15px;
+}
+
+.user-info img {
+  border: 3px solid rgb(77, 25, 77);
+  border-radius: 50%;
+  width: 50px;
+}
+
+.user-info p {
+  color: aliceblue;
+  margin: 0;
+}
+
+.search-links {
+  padding: 10px 20px;
+}
+
+.search-links a {
+  align-items: center;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: aliceblue;
+  display: flex;
+  font-size: 20px;
+  height: 50px;
+  justify-content: space-between;
+  margin: 20px 40px;
+  padding: 25px;
+  text-decoration: none;
+}
+
+.search-links li:hover {
+  cursor: pointer;
+}
+
+.search-links li:nth-child(1) a {
+  background-color: #0B525B;
+}
+
+.search-links li:nth-child(1):hover a {
+  background-color: #1aa5b8;
+}
+
+.search-links li:nth-child(2) a {
+  background-color: #272640;
+}
+
+.search-links li:nth-child(2):hover a {
+  background-color: #413f80;
+}
+
+.search-links li:nth-child(3) a {
+  background-color: #3E1F47;
+}
+
+.search-links li:nth-child(3):hover a {
+  background-color: #733f81;
+}

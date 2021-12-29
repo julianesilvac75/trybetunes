@@ -4,7 +4,7 @@ import '../styles/LoadingMessage.css';
 class LoadingMessage extends Component {
   render() {
     return (
-      <div>
+      <div className="loading">
         <div className="lds-default">
           <div />
           <div />
@@ -21,7 +21,7 @@ class LoadingMessage extends Component {
         </div>
 
         {/* Loader reference: https://loading.io/css/ */}
-        <span className="loading">Carregando...</span>
+        <span>Carregando...</span>
       </div>
     );
   }
