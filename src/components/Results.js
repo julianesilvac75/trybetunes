@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import '../styles/Results.css';
 
 class Results extends Component {
   handleAlbunsList(album) {
@@ -10,16 +11,19 @@ class Results extends Component {
       artistName } = album;
 
     return (
-      <div key={ collectionId }>
-        <img src={ artworkUrl100 } alt={ collectionName } />
-        <Link
-          to={ `/album/${collectionId}` }
-          data-testid={ `link-to-album-${collectionId}` }
-        >
-          { collectionName }
-        </Link>
-        <p>{ artistName }</p>
-      </div>
+
+      <Link
+        to={ `/album/${collectionId}` }
+        data-testid={ `link-to-album-${collectionId}` }
+      >
+        <div className="album-container" key={ collectionId }>
+          <img src={ artworkUrl100 } alt={ collectionName } />
+          <div>
+            <span className="album-name">{ collectionName }</span>
+            <span className="artist-name">{ artistName }</span>
+          </div>
+        </div>
+      </Link>
     );
   }
 
@@ -28,13 +32,19 @@ class Results extends Component {
       resultAPI } = this.props;
 
     return (
-      <div>
-        {resultAPI.length === 0 ? <p>Nenhum álbum foi encontrado</p> : (
-          <div>
-            <p>{`Resultado de álbuns de: ${chosenArtist}`}</p>
-            {resultAPI.map(this.handleAlbunsList)}
-          </div>) }
-      </div>
+      <section>
+        {resultAPI.length === 0
+          ? (
+            <div className="not-found">
+              <i className="fas fa-exclamation" />
+              Nenhum álbum foi encontrado
+            </div>
+          ) : (
+            <div className="results-section">
+              <p>{`Resultado de álbuns de: ${chosenArtist}`}</p>
+              {resultAPI.map(this.handleAlbunsList)}
+            </div>) }
+      </section>
     );
   }
 }

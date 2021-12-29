@@ -7,7 +7,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: 40px 0;
+  margin: 40px 0 20px 0;
 }
 
 .search-artist-input, .search-artist-button {
