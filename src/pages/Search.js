@@ -39,6 +39,7 @@ class Search extends Component {
     this.setState((previousState) => ({
       chosenArtist: previousState.searchArtistInput,
       searchArtistInput: '',
+      isSearchButtonDisabled: true,
       loading: true,
     }), () => this.onComponentOnmount());
   }
@@ -67,17 +68,19 @@ class Search extends Component {
         <Header />
 
         {loading ? <LoadingMessage /> : (
-          <form>
+          <form className="search-bar">
             <input
               type="text"
               name="searchArtistInput"
               value={ searchArtistInput }
               placeholder="Digite o nome da banda ou artista"
+              className="search-artist-input"
               data-testid="search-artist-input"
               onChange={ this.onSearchArtistInputChange }
             />
             <button
               type="submit"
+              className="search-artist-button"
               data-testid="search-artist-button"
               onClick={ this.onSearchButtonClick }
               disabled={ isSearchButtonDisabled }
