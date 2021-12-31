@@ -15,8 +15,13 @@
 
 .music-container label {
   align-items: center;
+  align-self: flex-start;
   display: flex;
   font-size: 15px;
+}
+
+.music-container label:hover {
+  cursor: pointer;
 }
 
 .checkbox-input {
