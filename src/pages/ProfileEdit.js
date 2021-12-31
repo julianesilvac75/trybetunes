@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import Header from '../components/Header';
 import LoadingMessage from '../components/LoadingMessage';
 import { getUser, updateUser } from '../services/userAPI';
+import '../styles/ProfileEdit.css';
 
 class ProfileEdit extends Component {
   constructor() {
@@ -106,7 +107,10 @@ class ProfileEdit extends Component {
       redirect } = this.state;
 
     return (
-      <div data-testid="page-profile-edit">
+      <div
+        className="page-profile-edit"
+        data-testid="page-profile-edit"
+      >
         <Header />
         { loading ? <LoadingMessage /> : (
           <form>
@@ -170,6 +174,7 @@ class ProfileEdit extends Component {
             </label>
 
             <button
+              className="edit-button"
               type="submit"
               data-testid="edit-button-save"
               onClick={ this.handleSaveButtonClick }

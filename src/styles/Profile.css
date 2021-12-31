@@ -11,7 +11,7 @@
 }
 
 .user-profile div {
-  align-items: center;
+  /* align-items: center; */
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
@@ -33,6 +33,7 @@
   align-self: center;
   border: 3px solid rgb(77, 25, 77);
   border-radius: 50%;
+  height: 200px;
   width: 200px;
 }
 

@@ -1,0 +1,39 @@
+.page-profile-edit {
+  width: 100%;
+}
+
+.page-profile-edit form {
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 40px;
+}
+
+.page-profile-edit form img {
+  margin-bottom: 20px;
+}
+
+.page-profile-edit form label {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.page-profile-edit form label input {
+  width: 240px;
+}
+
+.edit-button {
+  align-self: center;
+}
+
+.edit-button:disabled {
+  background-color: rgba(196, 195, 195, 0.692);
+  border: 2px solid gray;
+  color: rgb(97, 96, 92);
+}
+
+.edit-button:disabled:hover {
+  cursor: auto;
+}
