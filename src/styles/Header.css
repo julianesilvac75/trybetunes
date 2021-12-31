@@ -49,6 +49,10 @@
   padding: 10px 20px;
 }
 
+.search-links li {
+  list-style: none;
+}
+
 .search-links a {
   align-items: center;
   border-radius: 15px;

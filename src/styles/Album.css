@@ -1,0 +1,12 @@
+.album-section {
+  color: aliceblue;
+  margin: 5px 30px;
+}
+
+.album-section h2, .album-section h3 {
+  margin: 0;
+}
+
+.musics-list {
+  margin: 15px 0;
+}

@@ -5,6 +5,7 @@ import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import LoadingMessage from '../components/LoadingMessage';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import '../styles/Album.css';
 
 class Album extends Component {
   constructor() {
@@ -105,7 +106,7 @@ class Album extends Component {
       <div data-testid="page-album">
         <Header />
         {loading ? <LoadingMessage /> : (
-          <div>
+          <section className="album-section">
             <h2
               data-testid="album-name"
             >
@@ -116,8 +117,10 @@ class Album extends Component {
             >
               { artistName }
             </h3>
-            {this.musicsList()}
-          </div>
+            <div className="musics-list">
+              {this.musicsList()}
+            </div>
+          </section>
         )}
       </div>
     );
