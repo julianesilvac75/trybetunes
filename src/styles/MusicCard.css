@@ -1,9 +1,31 @@
-/* .checkbox-input {
+.music-container {
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.music-container span {
+  font-size: 20px;
+}
+
+.music-container audio {
+  margin: 15px 0
+}
+
+.music-container label {
+  align-items: center;
+  display: flex;
+  font-size: 15px;
+}
+
+.checkbox-input {
   display: none;
-} */
+}
 
 .empty-heart {
   font-size: 1.22em;
+  margin-left: 5px;
 }
 
 .full-heart {
@@ -11,7 +33,7 @@
   left: -1.1em;
   opacity: 0;
   position: relative;
-  top: -0.06em;
+  top: -0.03em;
 }
 
 .full-heart:hover {
@@ -19,7 +41,7 @@
 }
 
 .checkbox-input:checked ~ .full-heart {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 /* Referência do botão de favorito: https://codepen.io/Guades/pen/bewZgO */

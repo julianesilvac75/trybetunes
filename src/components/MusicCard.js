@@ -11,12 +11,8 @@ class MusicCard extends Component {
       handleFavoriteClick } = this.props;
 
     return (
-      <div>
+      <div className="music-container">
         <span>{ trackName }</span>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          {`O seu navegador não suporta o elemento ${<code>audio</code>}.` }
-        </audio>
         <label
           htmlFor={ trackId }
           className="favorite-container"
@@ -26,7 +22,7 @@ class MusicCard extends Component {
             type="checkbox"
             id={ trackId }
             data-testid={ `checkbox-music-${trackId}
-          ` }
+            ` }
             className="checkbox-input"
             onChange={ handleFavoriteClick }
             checked={ isFavorite }
@@ -35,6 +31,10 @@ class MusicCard extends Component {
           <i className="favorite-heart full-heart fas fa-heart" />
           {/* Referência do botão de favorito: https://codepen.io/Guades/pen/bewZgO */}
         </label>
+        <audio data-testid="audio-component" src={ previewUrl } controls>
+          <track kind="captions" />
+          {`O seu navegador não suporta o elemento ${<code>audio</code>}.` }
+        </audio>
       </div>
     );
   }

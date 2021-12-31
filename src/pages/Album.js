@@ -103,7 +103,7 @@ class Album extends Component {
       artistName } = this.state;
 
     return (
-      <div data-testid="page-album">
+      <div className="album" data-testid="page-album">
         <Header />
         {loading ? <LoadingMessage /> : (
           <section className="album-section">
