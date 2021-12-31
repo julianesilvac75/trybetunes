@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import LoadingMessage from '../components/LoadingMessage';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import '../styles/Favorites.css';
 
 class Favorites extends Component {
   constructor() {
@@ -68,9 +69,12 @@ class Favorites extends Component {
     const { loading } = this.state;
 
     return (
-      <div data-testid="page-favorites">
+      <div className="page-favorites" data-testid="page-favorites">
         <Header />
-        {loading ? <LoadingMessage /> : this.getFavoritesList() }
+        {loading ? <LoadingMessage /> : (
+          <div className="favorites-list">
+            { this.getFavoritesList() }
+          </div>) }
       </div>
     );
   }
