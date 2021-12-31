@@ -46,10 +46,13 @@ class Profile extends Component {
       description } = this.state;
 
     return (
-      <div data-testid="page-profile">
+      <div
+        className="page-profile"
+        data-testid="page-profile"
+      >
         <Header />
         {loading ? <LoadingMessage /> : (
-          <div>
+          <section className="user-profile">
             <img
               className="user-image"
               // src={ image }
@@ -57,14 +60,24 @@ class Profile extends Component {
               alt={ userName }
               data-testid="profile-image"
             />
-            <h3>Nome</h3>
-            <p>{ userName }</p>
-            <h3>E-mail</h3>
-            <p>{ !email ? 'Nenhum e-mail cadastrado' : email }</p>
-            <h3>Descrição</h3>
-            <p>{ !description ? 'Nenhuma descrição cadastrada' : description }</p>
-            <Link to="/profile/edit">Editar perfil</Link>
-          </div>)}
+            <div>
+              <h3>Nome:</h3>
+              <p>{ userName }</p>
+            </div>
+            <div>
+              <h3>E-mail:</h3>
+              <p>{ !email ? 'Nenhum e-mail cadastrado' : email }</p>
+            </div>
+            <div>
+              <h3>Descrição:</h3>
+              <p>{ !description ? 'Nenhuma descrição cadastrada' : description }</p>
+            </div>
+            <Link to="/profile/edit">
+              <button className="edit-button" type="button">
+                Editar perfil
+              </button>
+            </Link>
+          </section>)}
       </div>
     );
   }
