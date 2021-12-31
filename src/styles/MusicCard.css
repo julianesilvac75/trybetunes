@@ -29,7 +29,7 @@
 }
 
 .full-heart {
-  color: red;
+  color: #813181;
   left: -1.1em;
   opacity: 0;
   position: relative;
@@ -37,7 +37,7 @@
 }
 
 .full-heart:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .checkbox-input:checked ~ .full-heart {

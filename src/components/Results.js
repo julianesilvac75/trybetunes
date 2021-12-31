@@ -15,8 +15,9 @@ class Results extends Component {
       <Link
         to={ `/album/${collectionId}` }
         data-testid={ `link-to-album-${collectionId}` }
+        key={ collectionId }
       >
-        <div className="album-container" key={ collectionId }>
+        <div className="album-container">
           <img src={ artworkUrl100 } alt={ collectionName } />
           <div>
             <span className="album-name">{ collectionName }</span>
