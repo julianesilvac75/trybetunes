@@ -97,3 +97,13 @@
 .search-links li:nth-child( 3 ):hover a {
   background-color: rgb(115, 63, 129);
 }
+
+@media (min-width: 700px) {
+  .header-user-name {
+    margin: 0 30px;
+  }
+
+  .search-links a {
+    margin: 20px 80px;
+  }
+}

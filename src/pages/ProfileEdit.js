@@ -146,7 +146,6 @@ class ProfileEdit extends Component {
               />
             </label>
 
-            {/* Fazer validação com regex */}
             <label htmlFor="edit-input-email">
               E-mail
               <input

@@ -2,8 +2,10 @@
 
 footer {
   background-color: black;
+  border-top: 1px solid rgb(27, 25, 25);
   box-sizing: border-box;
   color: aliceblue;
+  margin-top: 40px;
   padding: 20px;
   width: 100%;
 }
@@ -75,4 +77,11 @@ footer {
 
 .info-section a:hover {
   color: rgb(77, 25, 77);
+}
+
+@media (min-width: 700px) {
+  .about-section {
+    flex-direction: row; 
+    justify-content: space-around;
+  }
 }

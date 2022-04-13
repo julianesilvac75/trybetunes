@@ -20,7 +20,6 @@ class Footer extends Component {
             </ul>
           </div>
           <div className="social-media">
-            {/* <h3>Redes Sociais</h3> */}
             <i className="fab fa-instagram" />
             <i className="fab fa-facebook-square" />
             <i className="fab fa-google-play" />
