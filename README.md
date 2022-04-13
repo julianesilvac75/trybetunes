@@ -2,7 +2,7 @@
 
 Trybetunes is a single-page application build with ReactJS. It is a music player where the user can search for their favorite songs and artists, make a favorite songs list, as well as create and edit a personal profile.
 
-You can see this project live here.
+You can see the live project [here](https://trybetunes-nu.vercel.app/).
 
 
 ## Technologies
